@@ -3,10 +3,7 @@ import com.example.kkm_back.Domain.User;
 import com.example.kkm_back.Repository.UserRepository;
 import com.example.kkm_back.Service.KakaoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -30,8 +27,15 @@ public class OAuthController {
             needMoreInfo.put("id", 1);
             needMoreInfo.put("message", "NEED MORE INFO");
             return needMoreInfo;
-        } else {
-            return userInfo;
+        } else { // 회원 가입이 되어있다면 유저 정보 보내기
+            return exist; // user_id, nickname, k_id, k_img_url, k_email
         }
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/user/join", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
+    public User Join(@ModelAttribute User user) throws Exception {
+        userRepository.insertUser(user);
+        return user;
     }
 }
