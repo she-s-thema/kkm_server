@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.kkm_back.Repository.UserRepository">
+    <insert id="insertXml">
+        insert into users values (#{user_id}, #{nickname}, #{k_id}, #{k_img_url}, #{k_email})
+    </insert>
+
+    <select id="selectXml" resultType="User" parameterType="Long">
+        select * from users where user_id = #{id}
+    </select>
+</mapper>
