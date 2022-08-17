@@ -26,10 +26,6 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.9.0'
     runtimeOnly 'mysql:mysql-connector-java'
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2'
-    implementation 'org.springframework.boot:spring-boot-starter-security'
-    implementation 'org.springframework.security:spring-security-test'
-//    implementation 'com.auth0:java-jwt:3.19.2'
-    implementation 'io.jsonwebtoken:jjwt:0.9.1'
 }
 
 tasks.named('test') {

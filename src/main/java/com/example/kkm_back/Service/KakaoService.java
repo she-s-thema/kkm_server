@@ -23,7 +23,7 @@ public class KakaoService {
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
-            //    POST 요청을 위해 기본값이 false인 setDoOutput을 true로
+            // POST 요청을 위해 기본값이 false인 setDoOutput을 true로
             conn.setRequestMethod("POST");
             conn.setDoOutput(true);
 
@@ -31,8 +31,8 @@ public class KakaoService {
             StringBuilder sb = new StringBuilder();
 
             sb.append("grant_type=authorization_code");
-            sb.append("&client_id=58c4971e0d44ebafc559b0388b33dbdf");  //본인이 발급받은 key
-            sb.append("&redirect_uri=http://localhost:3000/auth/kakao/callback");     // 본인이 설정해 놓은 경로
+            sb.append("&client_id=9240bec26b639066d5ac5afdbaeb6bb0"); // 본인이 발급받은 key
+            sb.append("&redirect_uri=http://localhost:3000/auth/kakao/callback"); // 본인이 설정해 놓은 경로
             sb.append("&code=" + auth_code);
             bw.write(sb.toString());
             bw.flush();
@@ -49,7 +49,7 @@ public class KakaoService {
             }
             System.out.println("response body : " + result);
 
-            //    Gson 라이브러리에 포함된 클래스로 JSON파싱 객체 생성
+            // Gson 라이브러리에 포함된 클래스로 JSON파싱 객체 생성
             JsonParser parser = new JsonParser();
             JsonElement element = parser.parse(result);
 
@@ -100,12 +100,12 @@ public class KakaoService {
             JsonObject properties = (JsonObject) obj.get("properties");
 
 
-            String id = obj.get("id").toString();
-            String nickname = properties.get("profile_image").toString();
+            String k_id = obj.get("id").toString();
+            String k_img_url = properties.get("profile_image").toString();
 //            String age_range = kakao_account.get("email").toString();
 
-            result.put("id", id);
-            result.put("nickname", nickname);
+            result.put("k_id", k_id);
+            result.put("k_img_url", k_img_url);
 //            result.put("age_range", age_range);
 
             br.close();
