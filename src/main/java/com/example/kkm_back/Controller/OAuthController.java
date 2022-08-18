@@ -36,7 +36,8 @@ public class OAuthController {
     @ResponseBody
     @RequestMapping(value = "/user/join", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
     public User Join(@ModelAttribute User user) throws Exception {
+        System.out.println(user);
         userRepository.insertUser(user);
-        return user;
+        return user; // 새 JWT token 보내주기
     }
 }
