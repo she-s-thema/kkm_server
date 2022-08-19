@@ -1,5 +1,6 @@
 package com.example.kkm_back.Domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
 
