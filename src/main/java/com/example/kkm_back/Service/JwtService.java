@@ -28,7 +28,9 @@ public class JwtService {
         payloads.put("nickname", user.getNickname());
         payloads.put("k_id", user.getK_id());
         payloads.put("k_img_url", user.getK_img_url());
-        payloads.put("k_email", user.getK_email());
+        payloads.put("lat", user.getLat());
+        payloads.put("lon", user.getLon());
+        payloads.put("address", user.getAddress());
 
         String secret = Base64.getEncoder().encodeToString(key.getBytes());
 

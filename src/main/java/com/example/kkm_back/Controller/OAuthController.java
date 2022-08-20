@@ -33,7 +33,13 @@ public class OAuthController {
         if(exist == null) { // 회원 가입이 안 되어 있다면
             return "guest";
         } else { // 회원 가입이 되어있다면 JWT token 보내줘야 함
-            User user = new User(exist.get("user_id").toString(), exist.get("nickname").toString(), exist.get("k_id").toString(), exist.get("k_img_url").toString(), null);
+            User user = new User(exist.get("user_id").toString(),
+                                    exist.get("nickname").toString(),
+                                    exist.get("k_id").toString(),
+                                    exist.get("k_img_url").toString(),
+                                    Double.valueOf(exist.get("lat").toString()),
+                                    Double.valueOf(exist.get("lon").toString()),
+                                    exist.get("address").toString());
 
             String token = jwtService.createJWT(user);
             return token;
@@ -50,11 +56,16 @@ public class OAuthController {
         return token;
     }
 
+    //token 확인
     @ResponseBody
     @RequestMapping(value = "/checkJWT", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
-    public void CheckJWT(@RequestParam String token) throws Exception {
+    public String CheckJWT(@RequestParam String token) throws Exception {
         Map<String, Object> check = jwtService.checkJWT(token);
-        System.out.println(check);
+        if(check == null) {
+            return  "Required token";
+        } else {
+            return "Token is already exist";
+        }
     }
 
 }
