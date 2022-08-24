@@ -22,5 +22,8 @@ public class User {
         this.k_id = k_id;
         this.nickname = nickname;
         this.k_img_url = k_img_url;
+        this.lat = lat;
+        this.lon = lon;
+        this.address = address;
     }
 }
