@@ -18,4 +18,5 @@ public class BoardController {
         boardRepository.insertTest(board);
         return "success";
     }
+
 }
