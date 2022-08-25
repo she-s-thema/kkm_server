@@ -30,6 +30,7 @@ public class Trade {
         this.trade_state=trade_state;
         this.start_time=start_time;
         this.expired_time=expired_time;
+        this.post_state=post_state;
 
 
     }
