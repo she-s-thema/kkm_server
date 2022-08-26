@@ -9,18 +9,18 @@ import java.util.Date;
 @Getter
 @Setter
 public class Trade {
-    private int trade_id;
-    private int post_id;
-    private int post_owner_id;
-    private int trader_id;
-    private int trade_type;
-    private int trade_cost;
-    private int trade_state;
+    private long trade_id;
+    private long post_id;
+    private long post_owner_id;
+    private long trader_id;
+    private long trade_type;
+    private long trade_cost;
+    private long trade_state;
     private Date start_time;
     private Date expired_time;
-    private int post_state;
+    private long post_state;
 
-    public Trade(int trade_id, int post_id, int post_owner_id, int trader_id, int trade_type, int trade_cost, int trade_state,Date start_time, Date expired_time,int post_state){
+    public Trade(long trade_id, long post_id, long post_owner_id, long trader_id, long trade_type, long trade_cost, long trade_state,Date start_time, Date expired_time,long post_state){
         this.trade_id=trade_id;
         this.post_id=post_id;
         this.post_owner_id=post_owner_id;
