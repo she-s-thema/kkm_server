@@ -30,8 +30,12 @@ public class PostController {
     }
 
     @GetMapping("/post/{post_owner_id}")
-    public Post getPost(@PathVariable("post_owner_id") String post_owner_id) throws Exception {
+    public Post getPost(@PathVariable("post_owner_id") String post_owner_id) {
         return postRepository.getPost(post_owner_id);
+    }
+    @GetMapping("post/abc")
+    public Post getLATLON() throws Exception{
+        return postRepository.getLATLON();
     }
 }
 
