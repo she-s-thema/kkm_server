@@ -4,6 +4,7 @@ package com.example.kkm_back.Controller;
 import com.example.kkm_back.Domain.Post;
 import com.example.kkm_back.Repository.PostRepository;
 import com.sun.jdi.event.ExceptionEvent;
+import org.apache.ibatis.annotations.Param;
 import org.apache.logging.log4j.message.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,12 +31,13 @@ public class PostController {
     }
 
     @GetMapping("/post/{post_owner_id}")
-    public Post getPost(@PathVariable("post_owner_id") String post_owner_id) {
+    public List<Post> getPost(@PathVariable("post_owner_id") String post_owner_id) {
         return postRepository.getPost(post_owner_id);
     }
-    @GetMapping("post/abc")
-    public Post getLATLON() throws Exception{
-        return postRepository.getLATLON();
+    @GetMapping("/post/{users.user_id}/{Post.post_id}")
+    public List<Double> getLAT(@Param("users.user_id")String user_id,@Param("Post.post_id")String post_id) throws Exception{
+        return postRepository.getLAT(user_id,post_id);
     }
+
 }
 

@@ -20,8 +20,12 @@ public interface PostRepository {
     List<Post> getAll();
 
     @Select("SELECT * FROM Post WHERE post_owner_id=${post_owner_id}")
-    Post getPost(@Param ("post_owner_id") String post_owner_id);
+    List<Post> getPost(@Param ("post_owner_id") String post_owner_id);
 
-    @Select("SELECT post_id,lat,lon, ST_Distance_Sphere(@location, POINT(lon, lat) AS distance FROM Post ")
-    Post getLATLON();
+
+    @Select("SELECT ST_Distance_Sphere(POINT(users.lon, users.lat),POINT(Post.lon, Post.lat)) AS distance FROM Post\n " +
+            "INNER JOIN users ON users.user_id=Post.post_owner_id\n" +
+            "WHERE users.user_id=${users.user_id} AND  Post.post_id=${Post.post_id};")
+
+    List<Double> getLAT(@Param("users.user_id")String user_id,@Param("Post.post_id")String post_id);
 }
