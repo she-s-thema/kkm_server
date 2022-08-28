@@ -18,6 +18,7 @@ public class TradeController {
     }
     @PutMapping("/changeState/{trade_set}")
     public String updateTradeState(@PathVariable("trade_set")String trade_set)throws Exception{
+        tradeRepository.updateTradeState(trade_set);
         return "success";
     }
 
