@@ -34,7 +34,7 @@ public class PostController {
     public List<Post> getPost(@PathVariable("post_owner_id") String post_owner_id) {
         return postRepository.getPost(post_owner_id);
     }
-    @GetMapping("/post/{users.user_id}/{Post.post_id}")
+    @GetMapping("/post/{users.user_id}/{Post.post_id}")//다중 파라미터 오류 일단 스킵 함
     public List<Double> getLAT(@Param("users.user_id")String user_id,@Param("Post.post_id")String post_id) throws Exception{
         return postRepository.getLAT(user_id,post_id);
     }
