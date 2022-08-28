@@ -16,11 +16,11 @@ public class Trade {
     private long trade_type;
     private long trade_cost;
     private long trade_state;
-    private Date start_time;
-    private Date expired_time;
+    private String start_time;
+    private String expired_time;
     private long post_state;
 
-    public Trade(long trade_id, long post_id, long post_owner_id, long trader_id, long trade_type, long trade_cost, long trade_state,Date start_time, Date expired_time,long post_state){
+    public Trade(long trade_id, long post_id, long post_owner_id, long trader_id, long trade_type, long trade_cost, long trade_state,String start_time, String expired_time,long post_state){
         this.trade_id=trade_id;
         this.post_id=post_id;
         this.post_owner_id=post_owner_id;
