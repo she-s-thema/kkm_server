@@ -32,12 +32,12 @@ public class JwtService {
         payloads.put("lon", user.getLon());
         payloads.put("address", user.getAddress());
 
-        String secret = Base64.getEncoder().encodeToString(key.getBytes());
+        String accessToken = Base64.getEncoder().encodeToString(key.getBytes());
 
         return  Jwts.builder()
                     .setHeader(headers)
                     .setClaims(payloads)
-                    .signWith(SignatureAlgorithm.HS256, secret)
+                    .signWith(SignatureAlgorithm.HS256, accessToken)
                     .compact();
     }
 
