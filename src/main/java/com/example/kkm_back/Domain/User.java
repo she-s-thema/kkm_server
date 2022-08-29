@@ -11,7 +11,6 @@ public class User {
     private String nickname;
     private String k_id;
     private String k_img_url;
-
     private double lat;
     private double lon;
     private String address;
