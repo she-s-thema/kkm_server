@@ -59,12 +59,12 @@ public class OAuthController {
     //token 확인
     @ResponseBody
     @RequestMapping(value = "/checkJWT", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
-    public String CheckJWT(@RequestParam String token) throws Exception {
+    public Map<String, Object> CheckJWT(@RequestParam String token) throws Exception {
         Map<String, Object> check = jwtService.checkJWT(token);
         if(check == null) {
-            return  "Required token";
+            return check;
         } else {
-            return "Token is already exist";
+            return check;
         }
     }
 
