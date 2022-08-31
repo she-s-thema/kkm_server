@@ -42,7 +42,7 @@ public class PostController {
     public List<Double> getLAT(@Param("users.user_id")String user_id) throws Exception{
         return postRepository.getLAT(user_id);
     }
-    @GetMapping("post/town/list")
-    public List<Post> getPostTown(@Param())
+//    @GetMapping("post/town/list")
+//    public List<Post> getPostTown(@Param())
 }
 
