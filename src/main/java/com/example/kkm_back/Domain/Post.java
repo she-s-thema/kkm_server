@@ -8,6 +8,7 @@ import lombok.ToString;
 public class Post {
     private long post_id;
     private long post_owner_id;
+    private String title;
     private String image_1;
     private String image_2;
     private String image_3;
@@ -19,9 +20,10 @@ public class Post {
     private String address;
 
 
-    public Post(long post_id, long post_owner_id, String image_1, String image_2, String image_3, String description, String write_time, long cost,double lat,double lon,String address) {
+    public Post(long post_id, long post_owner_id, String title, String image_1, String image_2, String image_3, String description, String write_time, long cost,double lat,double lon,String address) {
         this.post_id = post_id;
         this.post_owner_id = post_owner_id;
+        this.title = title;
         this.image_1 = image_1;
         this.image_2 = image_2;
         this.image_3 = image_3;
