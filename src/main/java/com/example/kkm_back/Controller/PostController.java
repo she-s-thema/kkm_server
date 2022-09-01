@@ -34,22 +34,21 @@ public class PostController {
     public List<Post> getPost(@PathVariable("post_owner_id") String post_owner_id) {
         return postRepository.getPost(post_owner_id);
     }
+
     @GetMapping("/post/{users.user_id}/{Post.post_id}")//다중 파라미터 오류 일단 스킵 함
-    public List<Double> getLAT(@Param("users.user_id")String user_id,@Param("Post.post_id")String post_id) throws Exception{
-        return postRepository.getLAT1(user_id,post_id);
+    public List<Double> getLAT(@Param("users.user_id") String user_id, @Param("Post.post_id") String post_id) throws Exception {
+        return postRepository.getLAT1(user_id, post_id);
     }
+
     @GetMapping("/post/town/{users.user_id}/")//다중 파라미터 오류 일단 스킵 함
-    public List<Double> getLAT(@Param("users.user_id")String user_id) throws Exception{
+    public List<Double> getLAT(@Param("users.user_id") String user_id) throws Exception {
         return postRepository.getLAT(user_id);
     }
-<<<<<<< HEAD
+
     @GetMapping("post/townlist/{user_id}")
-    public List<Post> getPostTown(@Param("user_id")String user_id) throws Exception{
+    public List<Post> getPostTown(@PathVariable("user_id") String user_id) throws Exception {
         return postRepository.getPostTown(user_id);
     }
-=======
-//    @GetMapping("post/town/list")
-//    public List<Post> getPostTown(@Param())
->>>>>>> d617b3bf1a50b8fbf557cec989c83b414cf04a79
+
 }
 

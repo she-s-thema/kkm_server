@@ -15,12 +15,10 @@ public class Post {
     private String description;
     private String write_time;
     private long cost;
-    private double lat;
-    private double lon;
     private String address;
 
 
-    public Post(long post_id, long post_owner_id, String title, String image_1, String image_2, String image_3, String description, String write_time, long cost,double lat,double lon,String address) {
+    public Post(long post_id, long post_owner_id, String title, String image_1, String image_2, String image_3, String description, String write_time, long cost,String address) {
         this.post_id = post_id;
         this.post_owner_id = post_owner_id;
         this.title = title;
@@ -30,8 +28,6 @@ public class Post {
         this.description = description;
         this.write_time = write_time;
         this.cost = cost;
-        this.lat = lat;
-        this.lon = lon;
         this.address=address;
     }
 }
