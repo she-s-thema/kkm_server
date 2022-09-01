@@ -2,6 +2,7 @@ package com.example.kkm_back.Controller;
 
 
 import com.example.kkm_back.Domain.Post;
+import com.example.kkm_back.Domain.User;
 import com.example.kkm_back.Repository.PostRepository;
 import com.sun.jdi.event.ExceptionEvent;
 import org.apache.ibatis.annotations.Param;
@@ -35,19 +36,11 @@ public class PostController {
         return postRepository.getPost(post_owner_id);
     }
 
-    @GetMapping("/post/{users.user_id}/{Post.post_id}")//다중 파라미터 오류 일단 스킵 함
-    public List<Double> getLAT(@Param("users.user_id") String user_id, @Param("Post.post_id") String post_id) throws Exception {
-        return postRepository.getLAT1(user_id, post_id);
-    }
 
-    @GetMapping("/post/town/{users.user_id}/")//다중 파라미터 오류 일단 스킵 함
-    public List<Double> getLAT(@Param("users.user_id") String user_id) throws Exception {
-        return postRepository.getLAT(user_id);
-    }
 
-    @GetMapping("post/townlist/{user_id}")
-    public List<Post> getPostTown(@PathVariable("user_id") String user_id) throws Exception {
-        return postRepository.getPostTown(user_id);
+    @GetMapping(value = "post/townlist")//lon lat 값 넣어주면 댐요
+    public List<Post> getTown(@Param("lon")String lon, @Param("lat")String lat) throws Exception{
+        return postRepository.getTown(lon,lat);
     }
 
 }
