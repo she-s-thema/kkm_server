@@ -10,6 +10,7 @@ import org.apache.logging.log4j.message.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.ref.ReferenceQueue;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -19,28 +20,31 @@ public class PostController {
     @Autowired
     private PostRepository postRepository;
 
-
-    @PostMapping("/post")
+    @ResponseBody
+    @RequestMapping(value = "/post", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
     public String Post(@ModelAttribute Post post) throws Exception {
         postRepository.insertPost(post);
         return "success";
     }
 
-    @GetMapping("/postlist")
+    @ResponseBody
+    @RequestMapping(value = "/postlist", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
     public List<Post> getAll() throws Exception {
         return postRepository.getAll();
     }
 
-    @GetMapping("/post/{post_owner_id}")
+    @ResponseBody
+    @RequestMapping(value = "/post/{post_owner_id}", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
     public List<Post> getPost(@PathVariable("post_owner_id") String post_owner_id) {
         return postRepository.getPost(post_owner_id);
     }
 
 
-
-    @GetMapping(value = "post/townlist")//lon lat 값 넣어주면 댐요
-    public List<Post> getTown(@Param("lon")String lon, @Param("lat")String lat) throws Exception{
-        return postRepository.getTown(lon,lat);
+    @ResponseBody
+    @RequestMapping(value = "post/townlist", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
+//lon lat 값 넣어주면 댐요
+    public List<Post> getTown(@Param("lon") String lon, @Param("lat") String lat) throws Exception {
+        return postRepository.getTown(lon, lat);
     }
 
 }
