@@ -18,7 +18,7 @@ public interface TradeRepository {
     List<Trade> getTrade(@Param ("post_owner_id") String post_owner_id);
 
     @Update("UPDATE Trade SET trade_state = #{trade_state} WHERE trade_id = #{trade_id}")
-    void tradeSet(@Param("trade_set")String trade_set,@Param("trade_id")String trade_id);
+    void tradeSet(@Param("trade_state")String trade_state,@Param("trade_id")String trade_id);
 
   //  void updateTradeState(String trade_state);
 
