@@ -36,8 +36,8 @@ public class TradeController {
 
     @ResponseBody
     @RequestMapping(value = "/trade/changeState", method = RequestMethod.PUT, produces = "application/json; charset=utf-8")
-    public String updateTradeState(@Param("trade_set") String trade_set, @Param("trade_id") String trade_id) throws Exception {
-        tradeRepository.tradeSet(trade_set, trade_id);
+    public String updateTradeState(@Param("trade_state") String trade_state,@Param("trader_id")String trader_id,@Param("start_time")String start_time,@Param("expired_time")String expired_time, @Param("trade_id") String trade_id) throws Exception {
+        tradeRepository.tradeSet(trade_state,trader_id,start_time,expired_time, trade_id);
         return "success";
     }
 
