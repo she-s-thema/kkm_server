@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 @Mapper
 public interface TradeRepository {
-    @Insert("INSERT INTO Trade VALUES(#{trade_id}, #{post_id},#{post_owner_id},#{trader_id}, #{trade_type}, #{trade_cost},#{trade_state},#{start_time},#{expired_time})")
+    @Insert("INSERT INTO Trade VALUES(#{trade_id}, #{post_id},#{post_owner_id},#{trader_id}, #{trade_cost},#{trade_state},#{start_time},#{expired_time})")
     void insertTrade(Trade trade);
     @Select("SELECT * FROM Trade")
     List<Trade> getAll();
