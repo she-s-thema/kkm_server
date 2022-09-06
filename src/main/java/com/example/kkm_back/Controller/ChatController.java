@@ -14,12 +14,16 @@ public class ChatController {
     private final ChatService chatService;
 
     @PostMapping
-    public ChatRoom createRoom(@RequestBody String name) {
-        return chatService.createRoom(name);
+    public ChatRoom createRoom(@RequestParam(value = "userId", required = true) String userId) {
+        return chatService.createRoom(userId);
     }
+//    @GetMapping
+//    public List<ChatRoom> findAllRoom() {
+//        return chatService.findAllRoom();
+//    }
 
     @GetMapping
-    public List<ChatRoom> findAllRoom() {
-        return chatService.findAllRoom();
+    public ChatRoom findRoomById(@RequestParam(value = "roomId", required = true) String roomId) {
+        return chatService.findRoomByRoomId(roomId);
     }
 }
