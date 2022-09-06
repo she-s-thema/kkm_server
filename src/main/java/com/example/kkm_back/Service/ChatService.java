@@ -1,7 +1,9 @@
 package com.example.kkm_back.Service;
 
 import com.example.kkm_back.Domain.ChatRoom;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,7 @@ import java.util.*;
 @Slf4j
 @RequiredArgsConstructor
 @Service
+@JsonIgnoreProperties(value = {"Handler"})
 public class ChatService {
     private final ObjectMapper objectMapper;
     private Map<String, ChatRoom> chatRooms;
@@ -28,15 +31,20 @@ public class ChatService {
         return new ArrayList<>(chatRooms.values());
     }
 
-    public ChatRoom findRoomById(String roomId) {
+    public ChatRoom findRoomByRoomId(String roomId) {
         return chatRooms.get(roomId);
     }
 
-    public ChatRoom createRoom(String name) {
+    public ChatRoom findRoomByUserId(long user_id) {
+        System.out.println(chatRooms);
+        return chatRooms.get(user_id);
+    }
+
+    public ChatRoom createRoom(String userId) {
         String randomId = UUID.randomUUID().toString();
         ChatRoom chatRoom = ChatRoom.builder()
                 .roomId(randomId)
-                .name(name)
+                .userId(userId)
                 .build();
         chatRooms.put(randomId, chatRoom);
         return chatRoom;
