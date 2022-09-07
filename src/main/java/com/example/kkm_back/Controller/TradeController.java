@@ -35,9 +35,15 @@ public class TradeController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/trade/changeState", method = RequestMethod.PUT, produces = "application/json; charset=utf-8")
-    public String updateTradeState(@Param("trade_state") String trade_state,@Param("trader_id")String trader_id,@Param("start_time")String start_time,@Param("expired_time")String expired_time, @Param("trade_id") String trade_id) throws Exception {
-        tradeRepository.tradeSet(trade_state,trader_id,start_time,expired_time, trade_id);
+    @RequestMapping(value = "/trade/makefirst", method = RequestMethod.PUT, produces = "application/json; charset=utf-8")
+    public String tradefirst(Trade trade) throws Exception {
+        tradeRepository.maketrade(trade);
+        return "success";
+    }
+    @ResponseBody
+    @RequestMapping(value = "/trade/makesecond", method = RequestMethod.PUT, produces = "application/json; charset=utf-8")
+    public String tradesecond(Trade trade) throws Exception {
+        tradeRepository.maketrade(trade);
         return "success";
     }
 
