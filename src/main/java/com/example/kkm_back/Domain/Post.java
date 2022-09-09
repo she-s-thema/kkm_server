@@ -13,13 +13,13 @@ public class Post {
     private String image_2;
     private String image_3;
     private String description;
-    private String write_time;
+    private java.sql.Timestamp write_time;
     private long cost;
     private long state;
     private long type;
 
 
-    public Post(long post_id, long post_owner_id, String title, String image_1, String image_2, String image_3, String description, String write_time, long cost, long state, long type) {
+    public Post(long post_id, long post_owner_id, String title, String image_1, String image_2, String image_3, String description, java.sql.Timestamp write_time, long cost, long state, long type) {
         this.post_id = post_id;
         this.post_owner_id = post_owner_id;
         this.title = title;

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RequiredArgsConstructor
+@CrossOrigin
 @RestController
 @RequestMapping("/chat")
 public class ChatController {
