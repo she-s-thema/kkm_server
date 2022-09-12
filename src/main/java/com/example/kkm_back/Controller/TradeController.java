@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin
 @RestController
 public class TradeController {
     @Autowired
@@ -35,15 +35,15 @@ public class TradeController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/trade/makefirst", method = RequestMethod.PUT, produces = "application/json; charset=utf-8")
+    @RequestMapping(value = "/trade/makefirst", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
     public String tradefirst(Trade trade) throws Exception {
-        tradeRepository.maketrade(trade);
+        tradeRepository.insertTrade(trade);
         return "success";
     }
     @ResponseBody
-    @RequestMapping(value = "/trade/makesecond", method = RequestMethod.PUT, produces = "application/json; charset=utf-8")
+    @RequestMapping(value = "/trade/makesecond", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
     public String tradesecond(Trade trade) throws Exception {
-        tradeRepository.maketrade(trade);
+        tradeRepository.insertTrade(trade);
         return "success";
     }
 

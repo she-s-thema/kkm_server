@@ -26,4 +26,5 @@ public interface PostRepository {
     @Select("select * from Post where post_owner_id in (select user_id from Users where ST_DISTANCE_SPHERE(POINT(#{lon},#{lat}),POINT(lon,lat))<=5000 )order by write_time desc")
     List<Post> getTown(@Param("lon")String lon, @Param("lat")String lat);
 
+//    @Select("select Post.")
 }

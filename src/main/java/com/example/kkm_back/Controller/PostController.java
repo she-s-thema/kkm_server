@@ -14,7 +14,7 @@ import java.lang.ref.ReferenceQueue;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
+@CrossOrigin
 @RestController
 public class PostController {
     @Autowired
@@ -42,10 +42,13 @@ public class PostController {
 
     @ResponseBody
     @RequestMapping(value = "post/townlist", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
-//lon lat 값 넣어주면 댐요
     public List<Post> getTown(@Param("lon") String lon, @Param("lat") String lat) throws Exception {
         return postRepository.getTown(lon, lat);
     }
 
+
+//    @ResponseBody
+//    @RequestMapping(value = "/post/{psot_id}",method = RequestMethod.GET,produces = "application/json; charset=utf-8")
+//    public Post showPost
 }
 
