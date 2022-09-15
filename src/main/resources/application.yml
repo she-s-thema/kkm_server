@@ -1,0 +1,54 @@
+#spring:
+#  servlet:
+#    multipart:
+#      max-file-size: 10MB
+#      max-request-size: 10MB
+#  mvc:
+#    pathmatch:
+#      matching-strategy: ant_path_matcher
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    username: ggmdb
+#    url: jdbc:mysql://ggmdb.c2rnm9avjkap.ap-northeast-2.rds.amazonaws.com:3306/ggmDB
+#    password: $GGMDB_PASSWORD
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#
+#    properties:
+#      hibernate:
+#        temp:
+#          use_jdbc_metadata_defaults: false;
+#
+#        jdbc:
+#          lob:
+#            non_contextual_creation: true
+#mybatis:
+#  mapper-locations: mappers/*.xml
+#  type-aliases-package: com.example.kkm_back.Domain
+#  jackson:
+#    serialization:
+#      fail-on-empty-beans: 'false'
+#springfox:
+#  documentation:
+#    swagger:
+#      use-model-v3: 'false'
+#
+#cloud:
+#  aws:
+#    credentials:
+#      access-key: $AWS_ACCESS_KEY
+#      secret-key: $AWS_SECRET_KEY
+#
+#
+#    region:
+#      static: ap-northeast-2
+#    s3:
+#      bucket: kkm
+#    stack:
+#      auto: false
+#
+#debug: 'true'
+#server:
+#  port: '3030'
+#

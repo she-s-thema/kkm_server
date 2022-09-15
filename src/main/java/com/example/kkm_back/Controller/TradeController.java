@@ -15,7 +15,7 @@ public class TradeController {
     @Autowired
     private TradeRepository tradeRepository;
 
-    @ResponseBody // trader_id null도 가능하게, auto 증가 되게
+    @ResponseBody
     @RequestMapping(value = "/trade",method = RequestMethod.POST, produces = "application/json; charset=utf-8")
     public String Trade(@ModelAttribute Trade trade) throws Exception {
         tradeRepository.insertTrade(trade);
