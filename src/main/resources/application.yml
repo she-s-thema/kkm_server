@@ -30,6 +30,8 @@ cloud:
     credentials:
       access-key: AKIAYQITP6EKNETYVJ4U
       secret-key: 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
+
+
     region:
       static: ap-northeast-2
     s3:
