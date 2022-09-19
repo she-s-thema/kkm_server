@@ -1,4 +1,4 @@
-package com.example.kkm_back.Repository;
+package com.example.kkm_back.DAO;
 
 import com.example.kkm_back.Domain.Post;
 import org.apache.ibatis.annotations.Mapper;

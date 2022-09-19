@@ -1,9 +1,0 @@
-
-<insert id="insertHeart" parameterType="Heart">
-    INSERT INTO Heart(heart_id,post_id,post_owner_id,heart_user_id,heart_state)
-    VALUES (#{heart_id}, #{post_id}, #{post_owner_id},#{heart_user_id},#{heart_state})
-
-    <selectKey keyProperty="heart_id" resultType="integer" order="AFTER">
-        SELECT MAX(heart_id) FROM member
-    </selectKey>
-</insert>
