@@ -1,6 +1,7 @@
 package com.example.kkm_back.Controller;
 
 
+import com.example.kkm_back.DAO.TradeDAO;
 import com.example.kkm_back.Domain.Post;
 import com.example.kkm_back.Domain.Trade;
 import com.example.kkm_back.Repository.TradeRepository;
@@ -15,11 +16,15 @@ public class TradeController {
     @Autowired
     private TradeRepository tradeRepository;
 
+    @Autowired
+    private TradeDAO tradeDAO;
+
     @ResponseBody
     @RequestMapping(value = "/trade",method = RequestMethod.POST, produces = "application/json; charset=utf-8")
-    public String Trade(@ModelAttribute Trade trade) throws Exception {
-        tradeRepository.insertTrade(trade);
-        return "success";
+    public long Trade(@ModelAttribute Trade trade) throws Exception {
+        tradeDAO.tradeInsert(trade);
+        System.out.println(trade.getTrade_id());
+        return trade.getTrade_id();
     }
 
     @ResponseBody
