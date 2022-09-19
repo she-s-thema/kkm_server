@@ -13,7 +13,7 @@ public interface PostRepository {
     @Select("SELECT * FROM Post")
     List<Post> getAll();
 
-    @Select("SELECT * FROM Post WHERE post_owner_id=#{post_owner_id}")
+    @Select("SELECT * FROM Post WHERE post_owner_id=#{post_owner_id} order by write_time desc")
     List<Post> getPost(@Param ("post_owner_id") String post_owner_id);
 
 
