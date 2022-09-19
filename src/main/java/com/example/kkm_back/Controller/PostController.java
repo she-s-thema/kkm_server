@@ -47,9 +47,5 @@ public class PostController {
         return postRepository.getTown(lon, lat);
     }
 
-
-//    @ResponseBody
-//    @RequestMapping(value = "/post/{psot_id}",method = RequestMethod.GET,produces = "application/json; charset=utf-8")
-//    public Post showPost
 }
 
