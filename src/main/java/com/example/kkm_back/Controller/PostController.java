@@ -2,29 +2,31 @@ package com.example.kkm_back.Controller;
 
 
 import com.example.kkm_back.Domain.Post;
-import com.example.kkm_back.Domain.User;
+import com.example.kkm_back.Repository.PostDAO;
 import com.example.kkm_back.Repository.PostRepository;
-import com.sun.jdi.event.ExceptionEvent;
 import org.apache.ibatis.annotations.Param;
-import org.apache.logging.log4j.message.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.ref.ReferenceQueue;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
 @CrossOrigin
 @RestController
 public class PostController {
     @Autowired
     private PostRepository postRepository;
 
+    @Autowired
+    private PostDAO postDAO;
+
     @ResponseBody
     @RequestMapping(value = "/post", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
-    public String Post(@ModelAttribute Post post) throws Exception {
-        postRepository.insertPost(post);
-        return "success";
+    public long Post(@ModelAttribute Post post) throws Exception {
+        postDAO.postInsert(post);
+        System.out.println(post.getPost_id());
+
+        return post.getPost_id();
     }
 
     @ResponseBody
