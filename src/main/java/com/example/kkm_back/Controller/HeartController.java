@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin
 @RestController
 public class HeartController {
@@ -40,5 +42,10 @@ public class HeartController {
     public String ReHeart(@PathVariable("heart_id")int heart_id)throws Exception{
         heartRepository.ReHeart(heart_id);
         return "success";
+    }
+    @ResponseBody
+    @RequestMapping(value = "/heartlist", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
+    public List<Heart> ReHeart()throws Exception{
+        return heartRepository.getAllHeart();
     }
 }

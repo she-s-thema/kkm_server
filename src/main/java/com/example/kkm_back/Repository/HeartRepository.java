@@ -5,6 +5,8 @@ import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.mapping.StatementType;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 @Mapper
 public interface HeartRepository {
@@ -24,4 +26,6 @@ public interface HeartRepository {
             "set H.heart_state=1\n" +
             "where H.heart_id=#{heart_id}")
     void ReHeart(long heart_id);
+    @Select("select * from Heart")
+    List<Heart> getAllHeart();
 }
