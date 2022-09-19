@@ -20,7 +20,7 @@ public interface HeartRepository {
             )
     long insertHeart(Heart heart);
 
-//    @SelectKey(statement="CALL IDENTITY()", keyProperty="id", before=false, resultType=Long.class)
+    //    @SelectKey(statement="CALL IDENTITY()", keyProperty="id", before=false, resultType=Long.class)
 //    int insert(Coffee record);
 //    @Insert("INSERT INTO Students(id, name , email) VALUES  (#{id}, #{name}, #{email})")
 //    @SelectKey(statement="select SEQ_STUDENT.nextval FROM DUAL", keyProperty="id", before=true, resultType=int.class)

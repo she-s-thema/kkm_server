@@ -1,5 +1,6 @@
 package com.example.kkm_back.Controller;
 
+import com.example.kkm_back.DAO.HeartDAO;
 import com.example.kkm_back.Domain.Heart;
 import com.example.kkm_back.Repository.HeartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +13,14 @@ public class HeartController {
     @Autowired
     private HeartRepository heartRepository;
 
+    @Autowired
+    private HeartDAO heartDAO;
     @ResponseBody
     @RequestMapping(value = "/heart", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
-    public long Heart(@ModelAttribute Heart heart)throws Exception{
-        return heartRepository.insertHeart(heart);
+    public long Heart(@ModelAttribute Heart heart) throws Exception {
+        heartDAO.heartInsert(heart);
+        System.out.println(heart.getHeart_id());
+        return heart.getHeart_id();
 
     }
     @ResponseBody

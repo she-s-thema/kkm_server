@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.kkm_back.DAO.HeartDAO">
+    <insert id="heartInsert" parameterType="com.example.kkm_back.Domain.Heart" useGeneratedKeys="true" keyProperty="heart_id" keyColumn="heart_id">
+        <selectKey resultType="int" keyProperty="heart_id" order="AFTER">SELECT LAST_INSERT_ID()</selectKey>
+        Insert into
+            Heart
+        values (0, #{post_id}, #{post_owner_id}, #{heart_user_id}, #{heart_state})
+    </insert>
+
+    <select id="heartList" resultType="map">
+        SELECT * FROM Heart
+    </select>
+</mapper>
