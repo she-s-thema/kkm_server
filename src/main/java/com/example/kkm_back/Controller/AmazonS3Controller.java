@@ -7,6 +7,8 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -18,8 +20,10 @@ import java.util.List;
 @RequestMapping(value = "/s3",produces = "application/json; charset=utf-8")
 public class AmazonS3Controller {
 
-    private final AwsS3Service awsS3Service;
-    private final PostRepository postRepository;
+    @Autowired
+    private AwsS3Service awsS3Service;
+    @Autowired
+    private PostRepository postRepository;
 
 
     //파라미터에 포스트아이디 값 넣어주고 바디 폼데이터에 사진 넣어줌
