@@ -51,7 +51,6 @@ public class OAuthController {
     @ResponseBody
     @RequestMapping(value = "/user/join", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
     public String Join(@ModelAttribute User user) throws Exception {
-        System.out.println(user);
         userRepository.insertUser(user);
         String token = jwtService.createJWT(user);
         return token;
@@ -67,5 +66,11 @@ public class OAuthController {
         } else {
             return check;
         }
+    }
+
+    @RequestMapping(value = "/getUserId", method = RequestMethod.GET)
+    public long GetUserId(@RequestParam long k_id) throws Exception {
+        Map<String, Object> user = userRepository.isExist(k_id);
+        return (long) user.get("user_id");
     }
 }
