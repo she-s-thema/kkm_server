@@ -28,4 +28,12 @@ public interface HeartRepository {
     void ReHeart(long heart_id);
     @Select("select * from Heart")
     List<Heart> getAllHeart();
+
+    @Select("\n" +
+            "select COUNT(*)\n" +
+            "from Heart\n" +
+            "inner join Post on Heart.post_id = Post.post_id\n" +
+            "inner join Users on Heart.heart_user_id = Users.user_id\n" +
+            "where Users.user_id=#{user_id} and Post.post_id=#{post_id}")
+    int trueOrFalse(long user_id,long post_id);
 }
