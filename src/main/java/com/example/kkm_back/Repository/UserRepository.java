@@ -17,4 +17,5 @@ public interface UserRepository {
 
     @Select("SELECT * FROM Users WHERE k_id = #{k_id}")
     Map<String, Object> isExist(long k_id);
+
 }
