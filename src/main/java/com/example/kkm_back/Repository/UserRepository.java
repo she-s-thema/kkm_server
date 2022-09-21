@@ -18,4 +18,10 @@ public interface UserRepository {
     @Select("SELECT * FROM Users WHERE k_id = #{k_id}")
     Map<String, Object> isExist(long k_id);
 
+    @Select("select Users.nickname,Users.k_img_url from Users\n" +
+            "inner join Post on Post.post_owner_id=Users.user_id\n" +
+            "where Post.post_id =#{post_id}")
+    List<Map<String,Object>> getUserProfile(long post_id);
+    //
+
 }
