@@ -36,4 +36,3 @@ public interface HeartRepository {
             "inner join Users on Heart.heart_user_id = Users.user_id\n" +
             "where Users.user_id=#{user_id} and Post.post_id=#{post_id}")
     int trueOrFalse(long user_id,long post_id);
-}
