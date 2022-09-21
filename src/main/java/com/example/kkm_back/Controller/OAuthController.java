@@ -4,9 +4,11 @@ import com.example.kkm_back.Domain.User;
 import com.example.kkm_back.Repository.UserRepository;
 import com.example.kkm_back.Service.JwtService;
 import com.example.kkm_back.Service.KakaoService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 @CrossOrigin
 @RestController
@@ -73,4 +75,9 @@ public class OAuthController {
         Map<String, Object> user = userRepository.isExist(k_id);
         return (long) user.get("user_id");
     }
-}
+    @RequestMapping(value = "/getUserProfile", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
+    public List<Map<String,Object>> GetUserProFile(@Param("post_id") long post_id) throws Exception {
+        return userRepository.getUserProfile(post_id);
+
+    }
+    }
