@@ -17,4 +17,8 @@ public interface TradeRepository {
     @Select("SELECT * FROM Trade WHERE post_owner_id=#{post_owner_id}")
     List<Trade> getTrade(@Param ("post_owner_id") String post_owner_id);
 
+
+    @Update("update Trade set trade_state = 1 where trade_id=#{trade_id}")
+    void finishTrade(@Param("trade_id")long trade_id);
+
 }
