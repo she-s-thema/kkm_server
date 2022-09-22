@@ -6,6 +6,7 @@ import org.apache.ibatis.mapping.StatementType;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 @Mapper
@@ -21,11 +22,13 @@ public interface HeartRepository {
             "set H.heart_state=2\n" +
             "where H.heart_id=#{heart_id}")
     void CancelHeart(long heart_id);
+
     @Update("Update Post\n" +
             "inner join Heart H on Post.post_id = H.post_id\n" +
             "set H.heart_state=1\n" +
             "where H.heart_id=#{heart_id}")
     void ReHeart(long heart_id);
+
     @Select("select * from Heart")
     List<Heart> getAllHeart();
 
@@ -35,5 +38,13 @@ public interface HeartRepository {
             "inner join Post on Heart.post_id = Post.post_id\n" +
             "inner join Users on Heart.heart_user_id = Users.user_id\n" +
             "where Users.user_id=#{user_id} and Post.post_id=#{post_id}")
-    int trueOrFalse(long user_id,long post_id);
+    int trueOrFalse(long user_id, long post_id);
+
+    @Select("select P.image_1,P.title from Heart\n" +
+            "inner join Users U on Heart.heart_user_id = U.user_id\n" +
+            "inner Join Post P on Heart.post_id = P.post_id\n" +
+            "where U.user_id=#{user_id} and Heart.heart_state=1\n" +
+            "order by time desc ")
+    List<Map<String,Object>> jjamList(long user_id);
+
 }

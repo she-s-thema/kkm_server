@@ -8,7 +8,7 @@
         <selectKey resultType="int" keyProperty="heart_id" order="AFTER">SELECT LAST_INSERT_ID()</selectKey>
         Insert into
             Heart
-        values (0, #{post_id}, #{post_owner_id}, #{heart_user_id}, #{heart_state})
+        values (0, #{post_id}, #{post_owner_id}, #{heart_user_id}, #{heart_state},#{time})
     </insert>
 
     <select id="heartList" resultType="map">

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin
 @RestController
@@ -62,5 +63,10 @@ public class HeartController {
             Trueorfalse=false;
         }
         return Trueorfalse;
+    }
+    @ResponseBody
+    @RequestMapping(value = "/jjamList", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
+    public List<Map<String,Object>> getjjamList(@Param("user_id")long user_id)throws Exception{
+        return heartRepository.jjamList(user_id);
     }
 }
