@@ -75,9 +75,13 @@ public class OAuthController {
         Map<String, Object> user = userRepository.isExist(k_id);
         return (long) user.get("user_id");
     }
-    @RequestMapping(value = "/getUserProfile", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
-    public List<Map<String,Object>> GetUserProFile(@Param("post_id") long post_id) throws Exception {
+    @RequestMapping(value = "/getUserProfile/{post_id}", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
+    public List<Map<String,Object>> GetUserProFile(@PathVariable("post_id") long post_id) throws Exception {
         return userRepository.getUserProfile(post_id);
 
+    }
+    @RequestMapping(value = "/getReviewInfo/{user_id}", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
+    public List<Map<String,Object>> GetReviewInfo(@PathVariable("user_id") long user_id) throws Exception {
+        return userRepository.getReviewInfo(user_id);
     }
     }
