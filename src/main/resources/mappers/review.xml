@@ -4,11 +4,11 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.kkm_back.DAO.ReviewDAO">
-    <insert id="ReviewInsert" parameterType="com.example.kkm_back.Domain.Review" useGeneratedKeys="true" keyProperty="review_id" keyColumn="review_id">
+    <insert id="reviewInsert" parameterType="com.example.kkm_back.Domain.Review" useGeneratedKeys="true" keyProperty="review_id" keyColumn="review_id">
         <selectKey resultType="int" keyProperty="review_id" order="AFTER">SELECT LAST_INSERT_ID()</selectKey>
         Insert into
         Review
-        values (0, #{post_id}, #{reviewer_id}, #{reviewed_id}, #{state},#{comment},#{wrtie_time})
+        values (0, #{post_id}, #{reviewer_id}, #{reviewed_id}, #{state},#{comment},#{write_time})
     </insert>
 
     <select id="reviewList" resultType="map">

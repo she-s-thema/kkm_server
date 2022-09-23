@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.kkm_back.DAO.TradeDAO">
-    <insert id="heartInsert" parameterType="com.example.kkm_back.Domain.Trade" useGeneratedKeys="true" keyProperty="trade_id" keyColumn="trade_id">
+    <insert id="tradeInsert" parameterType="com.example.kkm_back.Domain.Trade" useGeneratedKeys="true" keyProperty="trade_id" keyColumn="trade_id">
         <selectKey resultType="int" keyProperty="trade_id" order="AFTER">SELECT LAST_INSERT_ID()</selectKey>
         Insert into
         Trade
