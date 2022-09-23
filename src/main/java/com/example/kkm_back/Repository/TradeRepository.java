@@ -35,7 +35,7 @@ public interface TradeRepository {
     @Select("select COUNT(trade_id) from Trade\n" +
             "inner join Users U on Trade.trader_id = U.user_id\n" +
             "inner join Post P on Trade.post_id = P.post_id\n" +
-            "where trade_id=#{trade_id} and trade_state=2 and trade_state_2=2")
+            "where trade_id=#{trade_id} and trade_state=2 and trade_state_2=2 and trade_th=2")
     long tradeFinished(@Param("trade_id")long trade_id);
 
 }

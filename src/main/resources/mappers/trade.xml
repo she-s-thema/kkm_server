@@ -8,7 +8,7 @@
         <selectKey resultType="int" keyProperty="trade_id" order="AFTER">SELECT LAST_INSERT_ID()</selectKey>
         Insert into
         Trade
-        values (0, #{post_id}, #{post_owner_id}, #{trader_id}, #{trade_cost},#{trade_state},#{start_time},#{expired_time},#{trade_state_2})
+        values (0, #{post_id}, #{post_owner_id}, #{trader_id}, #{trade_cost},#{trade_state},#{start_time},#{expired_time},#{trade_state_2},#{trade_th})
     </insert>
 
     <select id="tradeList" resultType="map">
