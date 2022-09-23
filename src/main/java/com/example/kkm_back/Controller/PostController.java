@@ -47,5 +47,10 @@ public class PostController {
         return postRepository.getTown(lon, lat);
     }
 
+    @RequestMapping(value = "post/getDetail", method = RequestMethod.GET)
+    public Post getDetail(@RequestParam long post_id) throws Exception {
+        return postRepository.getPostID(post_id);
+    }
+
 }
 

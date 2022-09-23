@@ -10,7 +10,7 @@
         <selectKey resultType="int" keyProperty="post_id" order="AFTER">SELECT LAST_INSERT_ID()</selectKey>
         Insert into
             Post
-        values (0, #{post_owner_id}, #{title}, 0,0,0,#{description}, now(), #{cost}, 0,0)
+        values (0, #{post_owner_id}, #{title}, '','','',#{description}, now(), #{cost}, 0,0)
     </insert>
 
     <select id="postList" resultType="map">
