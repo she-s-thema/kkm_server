@@ -76,6 +76,13 @@ public class TradeController {
             }
             else return false;
         }
+    @ResponseBody
+    @RequestMapping(value = "trade/update", method = RequestMethod.PUT, produces = "application/json; charset=utf-8")
+    public String updateTrade( @Param("trade_id")long trade_id,@Param("trade_cost")long trade_cost, @Param("start_time")java.sql.Timestamp start_time, @Param("expired_time")java.sql.Timestamp expired_time) throws Exception{
+        tradeRepository.tradeUpdate(trade_id,trade_cost,start_time,expired_time);
+        return "success";
+    }
+
 //    @ResponseBody
 //    @RequestMapping(value = "trade/getTraded", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
 //    public long getTraded(@Param("post_id")long post_id,@Param("user_id")long user_id)throws Exception{

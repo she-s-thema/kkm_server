@@ -3,6 +3,7 @@ package com.example.kkm_back.Repository;
 import com.example.kkm_back.Domain.Trade;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -40,5 +41,10 @@ public interface TradeRepository {
             "inner join Post P on Trade.post_id = P.post_id\n" +
             "where trade_id=#{trade_id} and trade_state=2 and trade_state_2=2 and trade_th=2")
     long tradeFinished(@Param("trade_id")long trade_id);
+
+    @Update("update Trade\n" +
+            "set trade_cost=#{trade_cost},start_time =#{start_time},expired_time=#{expired_time}\n" +
+            "where trade_id=#{trade_id}")
+    void tradeUpdate(@Param("trade_id")long trade_id,@Param("trade_cost")long trade_cost, @Param("start_time")java.sql.Timestamp start_time, @Param("expired_time")java.sql.Timestamp expired_time);
 
 }
