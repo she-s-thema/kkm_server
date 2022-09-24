@@ -23,8 +23,6 @@ public class PostController {
     @RequestMapping(value = "/post", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
     public long Post(@ModelAttribute Post post) throws Exception {
         postDAO.postInsert(post);
-        System.out.println(post.getPost_id());
-
         return post.getPost_id();
     }
 

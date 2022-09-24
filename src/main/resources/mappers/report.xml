@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.kkm_back.DAO.ReportDAO">
+    <insert id="reportInsert" parameterType="com.example.kkm_back.Domain.Report" useGeneratedKeys="true" keyProperty="review_id" keyColumn="review_id">
+        <selectKey resultType="int" keyProperty="report_id" order="AFTER">SELECT LAST_INSERT_ID()</selectKey>
+        Insert into
+        Report
+        values (0, #{report_category}, #{reporter_id}, #{reported_id},#{comment})
+    </insert>
+
+    <select id="reportList" resultType="map">
+        SELECT * FROM Report
+    </select>
+</mapper>

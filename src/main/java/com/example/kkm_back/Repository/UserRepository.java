@@ -22,6 +22,10 @@ public interface UserRepository {
             "inner join Post on Post.post_owner_id=Users.user_id\n" +
             "where Post.post_id =#{post_id}")
     List<Map<String,Object>> getUserProfile(long post_id);
-    //
+
+    @Select("select Users.nickname,Users.k_img_url,R.comment,R.write_time from Users\n" +
+            "inner join Review R on Users.user_id = R.reviewed_id\n" +
+            "where Users.user_id=#{user_id}")
+    List<Map<String,Object>> getReviewInfo(long user_id);
 
 }
