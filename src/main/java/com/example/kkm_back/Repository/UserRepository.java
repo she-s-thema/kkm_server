@@ -4,6 +4,7 @@ import com.example.kkm_back.Domain.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -27,5 +28,7 @@ public interface UserRepository {
             "inner join Review R on Users.user_id = R.reviewed_id\n" +
             "where Users.user_id=#{user_id}")
     List<Map<String,Object>> getReviewInfo(long user_id);
+    @Update("update Users set nickname=#{nickname},lat=#{lat},lon=#{lon},address=#{address} where user_id=#{user_id}")
+    void updateUser(long user_id,String nickname,double lat,double lon, String address);
 
 }
