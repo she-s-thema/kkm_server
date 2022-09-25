@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+
 @CrossOrigin
 @RestController
 public class OAuthController {
@@ -75,13 +76,22 @@ public class OAuthController {
         Map<String, Object> user = userRepository.isExist(k_id);
         return (long) user.get("user_id");
     }
+
     @RequestMapping(value = "/getUserProfile/{post_id}", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
-    public List<Map<String,Object>> GetUserProFile(@PathVariable("post_id") long post_id) throws Exception {
+    public List<Map<String, Object>> GetUserProFile(@PathVariable("post_id") long post_id) throws Exception {
         return userRepository.getUserProfile(post_id);
 
     }
+
     @RequestMapping(value = "/getReviewInfo/{user_id}", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
-    public List<Map<String,Object>> GetReviewInfo(@PathVariable("user_id") long user_id) throws Exception {
+    public List<Map<String, Object>> GetReviewInfo(@PathVariable("user_id") long user_id) throws Exception {
         return userRepository.getReviewInfo(user_id);
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/user/update", method = RequestMethod.PUT, produces = "application/json; charset=utf-8")
+    public String userUpdate(@Param("user_id") long user_id, @Param("nickname") String nickname, @Param("lat") double lat, @Param("lon") double lon, @Param("address") String address) throws Exception {
+        userRepository.updateUser(user_id, nickname, lat, lon, address);
+        return "success";
     }
+}
