@@ -49,11 +49,17 @@ public class PostController {
     public Post getDetail(@RequestParam long post_id) throws Exception {
         return postRepository.getPostID(post_id);
     }
-    @RequestMapping(value = "post/updateState/{post_id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "post/updateStatetwo/{post_id}", method = RequestMethod.PUT)
     public String setState(@PathVariable("post_id")long post_id)throws Exception{
         postRepository.setStateTwo(post_id);
         return "success";
     }
+    @RequestMapping(value = "post/updateStatethree/{post_id}", method = RequestMethod.PUT)
+    public String setStatethree(@PathVariable("post_id")long post_id)throws Exception{
+        postRepository.setStateThree(post_id);
+        return "success";
+    }
+
 
 }
 
