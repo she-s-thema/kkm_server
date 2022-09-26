@@ -23,12 +23,9 @@ public interface TradeRepository {
     @Update("update Trade set trade_state_2 = 2 where trade_id=#{trade_id}")
     void finishTrader(@Param("trade_id")long trade_id);
 
-//    @Select("\n" +
-//            "select count(trade_id) from Trade\n" +
-//            "inner join Post P on Trade.post_id = P.post_id\n" +
-//            "inner join Users U on Trade.trader_id = U.user_id\n" +
-//            "where P.post_id=#{post_id} and U.user_id=trader_id and U.user_id=#{user_id}")
-//    long isTraded(@Param("post_id")long post_id,@Param("user_id")long user_id);
+    @Select("select count(trade_id) from Trade\n" +
+            "where trade_state=1 or trade_state_2=1 and post_id=#{post_id}")
+    long isTrading(@Param("post_id")long post_id);
 
 //    @Select("select trade_id from Trade\n" +
 //            "inner join Post P on Trade.post_id = P.post_id\n" +

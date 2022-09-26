@@ -26,4 +26,13 @@ public interface PostRepository {
     @Select("SELECT * FROM Post WHERE post_id=#{post_id}")
     Post getPostID(@Param ("post_id") long post_id);
 
+    @Update("update Post\n" +
+            "set state=2\n" +
+            "where post_id=#{post_id}")
+    void setStateTwo(@Param("post_id")long post_id);
+    @Update("update Post\n" +
+            "set state=3\n" +
+            "where post_id=#{post_id}")
+    void setStateThree(@Param("post_id")long post_id);
+
 }
