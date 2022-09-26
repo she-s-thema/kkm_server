@@ -25,7 +25,7 @@ public interface TradeRepository {
 
     @Select("select count(trade_id) from Trade\n" +
             "where trade_state=1 or trade_state_2=1 and post_id=#{post_id}")
-    long isTraded(@Param("post_id")long post_id);
+    long isTrading(@Param("post_id")long post_id);
 
 //    @Select("select trade_id from Trade\n" +
 //            "inner join Post P on Trade.post_id = P.post_id\n" +

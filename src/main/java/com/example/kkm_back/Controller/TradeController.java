@@ -59,9 +59,9 @@ public class TradeController {
         return "trade finished";
     }
     @ResponseBody
-    @RequestMapping(value = "trade/isTraded/{post_id}", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
+    @RequestMapping(value = "trade/isTrading/{post_id}", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
     public boolean isTraded(@PathVariable("post_id")long post_id)throws Exception {
-        long value = tradeRepository.isTraded(post_id);
+        long value = tradeRepository.isTrading(post_id);
         if(value>=1){
             return true;
         }
