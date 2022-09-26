@@ -18,19 +18,25 @@ public interface PostRepository {
             "description, write_time, cost, state, type, count(heart_id) as heart FROM Post\n"+
             "INNER JOIN Heart H\n"+
             "WHERE H.post_id = Post.post_id\n"+
+            "AND Post.post_owner_id in\n"+
+            "(select user_id from Users where ST_DISTANCE_SPHERE(POINT(#{lon}, #{lat}),\n"+
+                    "POINT(lon,lat))<=5000)\n" +
             "GROUP BY Post.post_id)\n" +
             "UNION\n"+
             "(SELECT Post.post_id, Post.post_owner_id, title, image_1, image_2, image_3,\n"+
              "description, write_time, cost, state, type, 0 as heart FROM Post\n"+
-                     "INNER JOIN Heart H\n"+
-                     "WHERE Post.post_id not in (SELECT Post.post_id FROM Post\n"+
-                     "INNER JOIN Heart H\n"+
-                     "WHERE H.post_id = Post.post_id\n"+
-                     "GROUP BY Post.post_id)\n"+
+             "INNER JOIN Heart H\n"+
+             "WHERE Post.post_id not in (SELECT Post.post_id FROM Post\n"+
+                 "INNER JOIN Heart H\n"+
+                 "WHERE H.post_id = Post.post_id\n"+
+                 "GROUP BY Post.post_id)\n"+
+            "AND Post.post_owner_id in\n"+
+            "(select user_id from Users where ST_DISTANCE_SPHERE(POINT(#{lon}, #{lat}),\n"+
+            "POINT(lon,lat))<=5000)\n" +
             "GROUP BY Post.post_id)\n"+
-            "ORDER BY post_id"
+            "ORDER BY post_id desc"
 )
-    List<PostList> getAllWithHeart();
+    List<PostList> getAllWithHeart(@Param("lon") String lon, @Param("lat") String lat);
 
     @Select("SELECT * FROM Post WHERE post_owner_id=#{post_owner_id} order by write_time desc")
     List<Post> getPost(@Param ("post_owner_id") String post_owner_id);

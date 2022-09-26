@@ -35,8 +35,8 @@ public class PostController {
 
     @ResponseBody
     @RequestMapping(value = "/getPostList", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
-    public List<PostList> getAllWithHeart() throws Exception {
-        return postRepository.getAllWithHeart();
+    public List<PostList> getAllWithHeart(@Param("lon") String lon, @Param("lat") String lat) throws Exception {
+        return postRepository.getAllWithHeart(lon, lat);
     }
 
     @ResponseBody
