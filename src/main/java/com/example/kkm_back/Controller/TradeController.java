@@ -58,15 +58,15 @@ public class TradeController {
         tradeRepository.finishTrader(trade_id);
         return "trade finished";
     }
-//    @ResponseBody
-//    @RequestMapping(value = "trade/isTraded", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
-//    public boolean isTraded(@Param("post_id")long post_id,@Param("user_id")long user_id)throws Exception {
-//        long value = tradeRepository.isTraded(post_id, user_id);
-//        if(value>=1){
-//            return true;
-//        }
-//        else return false;
-//    }
+    @ResponseBody
+    @RequestMapping(value = "trade/isTraded/{post_id}", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
+    public boolean isTraded(@PathVariable("post_id")long post_id)throws Exception {
+        long value = tradeRepository.isTraded(post_id);
+        if(value>=1){
+            return true;
+        }
+        else return false;
+    }
     @ResponseBody
     @RequestMapping(value = "trade/finishall/{trade_id}", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
     public boolean isFinished(@PathVariable("trade_id")long trade_id)throws Exception{
