@@ -3,6 +3,7 @@ package com.example.kkm_back.Controller;
 
 import com.example.kkm_back.Domain.Post;
 import com.example.kkm_back.DAO.PostDAO;
+import com.example.kkm_back.Domain.PostList;
 import com.example.kkm_back.Repository.PostRepository;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,12 @@ public class PostController {
     @RequestMapping(value = "/postlist", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
     public List<Post> getAll() throws Exception {
         return postRepository.getAll();
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/getPostList", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
+    public List<PostList> getAllWithHeart() throws Exception {
+        return postRepository.getAllWithHeart();
     }
 
     @ResponseBody
