@@ -88,10 +88,8 @@ public class OAuthController {
 
     }
 
-    @RequestMapping(value = "/getReviewInfo/{user_id}", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
-    public List<Map<String, Object>> GetReviewInfo(@PathVariable("user_id") long user_id) throws Exception {
-        return userRepository.getReviewInfo(user_id);
-    }
+
+
 
     @ResponseBody
     @RequestMapping(value = "/user/update", method = RequestMethod.PUT, produces = "application/json; charset=utf-8")

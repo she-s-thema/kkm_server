@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin
 @RestController
@@ -41,7 +42,7 @@ public class PostController {
 
     @ResponseBody
     @RequestMapping(value = "/getPostInfo/{post_owner_id}", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
-    public List<Post> getPost(@PathVariable("post_owner_id") String post_owner_id) {
+    public List<Map<String,Object>> getPost(@PathVariable("post_owner_id") String post_owner_id) {
         return postRepository.getPost(post_owner_id);
     }
 

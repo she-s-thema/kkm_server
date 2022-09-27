@@ -7,6 +7,9 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Map;
+
 @CrossOrigin
 @RestController
 public class ReviewController {
@@ -31,5 +34,10 @@ public class ReviewController {
     public String reviewUpdate(@Param("review_id")long review_id,@Param("comment")String comment,@Param("write_time")java.sql.Timestamp write_time)throws Exception{
         reviewRepository.updateReview(review_id, comment, write_time);
         return "success";
+    }
+    @ResponseBody
+    @RequestMapping(value = "/getReviewInfo/{reviewed_id}", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
+    public List<Map<String, Object>> getReveiwInfo(@PathVariable("reviewed_id")long reviewed_id)throws Exception{
+        return reviewRepository.getReviewInfo(reviewed_id);
     }
 }
