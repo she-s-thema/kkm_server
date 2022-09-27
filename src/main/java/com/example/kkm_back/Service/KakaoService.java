@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class KakaoService {
+public class  KakaoService {
     public String getAccessToken(String auth_code) {
         String access_Token = "";
         String refresh_Token = "";
@@ -115,6 +115,40 @@ public class KakaoService {
             e.printStackTrace();
         }
 
+        return result;
+    }
+
+
+    public Map<String, Object> getUserInfoById(long k_id) throws IOException {
+        String host = "https://kapi.kakao.com/v2/user/me";
+        Map<String, Object> result = new HashMap<>();
+        try {
+            URL url = new URL(host+"?target_id_type=user_id&target_id="+k_id);
+
+            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setRequestProperty("Authorization", "KakaoAK "+ "58c4971e0d44ebafc559b0388b33dbdf");
+            urlConnection.setRequestMethod("GET");
+
+            int responseCode = urlConnection.getResponseCode();
+            System.out.println("responseCode = " + responseCode);
+
+
+            BufferedReader br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+            String line = "";
+            String res = "";
+            while((line=br.readLine())!=null)
+            {
+                res+=line;
+            }
+            JsonParser parser = new JsonParser();
+            JsonObject obj = (JsonObject) parser.parse(res);
+            JsonObject properties = (JsonObject) obj.get("properties");
+            String k_img_url = properties.get("profile_image").toString();
+            result.put("k_img_url", k_img_url);
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return result;
     }
 }
