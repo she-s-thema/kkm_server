@@ -33,22 +33,23 @@ public class OAuthController {
     public String KakaoLogin(@RequestParam(value = "k_id", required = true) long k_id) throws Exception {
         Map<String, Object> exist = userRepository.isExist(k_id); // user table에 존재하면 존재하는 정보, 존재하지 않으면
         Map<String, Object> userInfo = kakaoService.getUserInfoById(k_id);
+        String current_profile_img = userInfo.get("k_img_url").toString().replace("\"", "");
         if (exist == null) { // 회원 가입이 안 되어 있다면
             return "guest";
         } else { // 회원 가입이 되어있다면 JWT token 보내줘야 함
+            if(!current_profile_img.equals(exist.get("k_img_url").toString()) ) {
+                userRepository.updateKImg(userInfo.get("k_img_url").toString().replace("\"", ""), k_id);
+            }
+
             User user = new User(exist.get("user_id").toString(),
                     exist.get("nickname").toString(),
                     exist.get("k_id").toString(),
-                    userInfo.get("k_img_url").toString().replace("\"", ""),
+                    current_profile_img,
                     Double.valueOf(exist.get("lat").toString()),
                     Double.valueOf(exist.get("lon").toString()),
                     exist.get("address").toString());
 
             String token = jwtService.createJWT(user);
-
-            if(!userInfo.get("k_img_url").toString().replace("\"", "").equals(exist.get("k_img_url").toString()) ) {
-                userRepository.updateKImg(userInfo.get("k_img_url").toString().replace("\"", ""), k_id);
-            }
             return token;
         }
     }
