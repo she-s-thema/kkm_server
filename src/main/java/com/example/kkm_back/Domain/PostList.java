@@ -18,9 +18,10 @@ public class PostList {
     private long state;
     private long type;
     private long heart;
+    private String address;
 
 
-    public PostList(long post_id, long post_owner_id, String title, String image_1, String image_2, String image_3, String description, java.sql.Timestamp write_time, long cost, long state, long type, long heart) {
+    public PostList(long post_id, long post_owner_id, String title, String image_1, String image_2, String image_3, String description, java.sql.Timestamp write_time, long cost, long state, long type, long heart, String address) {
         this.post_id = post_id;
         this.post_owner_id = post_owner_id;
         this.title = title;
@@ -33,5 +34,6 @@ public class PostList {
         this.state = state;
         this.type = type;
         this.heart = heart;
+        this.address = address;
     }
 }
