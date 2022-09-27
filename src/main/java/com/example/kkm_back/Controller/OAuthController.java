@@ -41,13 +41,14 @@ public class OAuthController {
                 userRepository.updateKImg(userInfo.get("k_img_url").toString().replace("\"", ""), k_id);
             }
 
-            User user = new User(exist.get("user_id").toString(),
+            User user = new User((Long) exist.get("user_id"),
                     exist.get("nickname").toString(),
                     exist.get("k_id").toString(),
                     current_profile_img,
                     Double.valueOf(exist.get("lat").toString()),
                     Double.valueOf(exist.get("lon").toString()),
-                    exist.get("address").toString());
+                    exist.get("address").toString(),
+                    (Long) exist.get("kkm"));
 
             String token = jwtService.createJWT(user);
             return token;
@@ -87,10 +88,8 @@ public class OAuthController {
 
     }
 
-    @RequestMapping(value = "/getReviewInfo/{user_id}", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
-    public List<Map<String, Object>> GetReviewInfo(@PathVariable("user_id") long user_id) throws Exception {
-        return userRepository.getReviewInfo(user_id);
-    }
+
+
 
     @ResponseBody
     @RequestMapping(value = "/user/update", method = RequestMethod.PUT, produces = "application/json; charset=utf-8")
@@ -98,4 +97,8 @@ public class OAuthController {
         userRepository.updateUser(user_id, nickname, lat, lon, address);
         return "success";
     }
-}
+    @RequestMapping(value = "/getUserInfo/{user_id}", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
+    public List<Map<String, Object>> GetUserInfo(@PathVariable("user_id") long user_id) throws Exception {
+        return userRepository.getUserInfo(user_id);
+    }
+    }

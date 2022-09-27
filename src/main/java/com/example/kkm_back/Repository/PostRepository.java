@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 @Mapper
@@ -40,8 +41,8 @@ public interface PostRepository {
 )
     List<PostList> getAllWithHeart(@Param("lon") String lon, @Param("lat") String lat);
 
-    @Select("SELECT * FROM Post WHERE post_owner_id=#{post_owner_id} order by write_time desc")
-    List<Post> getPost(@Param ("post_owner_id") String post_owner_id);
+    @Select("select post_id,title,image_1,write_time,state from Post where post_owner_id=#{post_owner_id} order by write_time desc")
+    List<Map<String,Object>> getPost(@Param ("post_owner_id") String post_owner_id);
 
 
     @Select("select * from Post where post_owner_id in (select user_id from Users where ST_DISTANCE_SPHERE(POINT(#{lon},#{lat}),POINT(lon,lat))<=5000 )order by write_time desc")
@@ -61,5 +62,8 @@ public interface PostRepository {
             "set state=3\n" +
             "where post_id=#{post_id}")
     void setStateThree(@Param("post_id")long post_id);
+
+    @Delete("delete from Post where post_id=#{post_id}")
+    void deletePost(@Param("post_id")long post_id);
 
 }

@@ -7,16 +7,17 @@ import lombok.ToString;
 @Getter
 @ToString
 public class User {
-    private String user_id;
+    private long user_id;
     private String nickname;
     private String k_id;
     private String k_img_url;
     private double lat;
     private double lon;
     private String address;
+    private long kkm;
 
 
-    public User(String user_id, String nickname, String k_id, String k_img_url, double lat,  double lon, String address) {
+    public User(long user_id, String nickname, String k_id, String k_img_url, double lat,  double lon, String address,long kkm) {
         this.user_id = user_id;
         this.k_id = k_id;
         this.nickname = nickname;
@@ -24,5 +25,6 @@ public class User {
         this.lat = lat;
         this.lon = lon;
         this.address = address;
+        this.kkm=kkm;
     }
 }
