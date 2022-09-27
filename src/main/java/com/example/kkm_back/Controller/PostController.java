@@ -42,7 +42,7 @@ public class PostController {
 
     @ResponseBody
     @RequestMapping(value = "/getPostInfo/{post_owner_id}", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
-    public List<Map<String,Object>> getPost(@PathVariable("post_owner_id") String post_owner_id) {
+    public List<Map<String, Object>> getPost(@PathVariable("post_owner_id") String post_owner_id) {
         return postRepository.getPost(post_owner_id);
     }
 
@@ -57,17 +57,23 @@ public class PostController {
     public Post getDetail(@RequestParam long post_id) throws Exception {
         return postRepository.getPostID(post_id);
     }
+
     @RequestMapping(value = "post/updateStatetwo/{post_id}", method = RequestMethod.PUT)
-    public String setState(@PathVariable("post_id")long post_id)throws Exception{
+    public String setState(@PathVariable("post_id") long post_id) throws Exception {
         postRepository.setStateTwo(post_id);
         return "success";
     }
+
     @RequestMapping(value = "post/updateStatethree/{post_id}", method = RequestMethod.PUT)
-    public String setStatethree(@PathVariable("post_id")long post_id)throws Exception{
+    public String setStatethree(@PathVariable("post_id") long post_id) throws Exception {
         postRepository.setStateThree(post_id);
         return "success";
     }
 
-
+    @RequestMapping(value = "post/delete/{post_id}", method = RequestMethod.DELETE)
+    public String deletePost(@PathVariable("post_id") long post_id) throws Exception {
+        postRepository.deletePost(post_id);
+        return "sucess";
+    }
 }
 

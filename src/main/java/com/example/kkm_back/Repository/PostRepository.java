@@ -63,4 +63,7 @@ public interface PostRepository {
             "where post_id=#{post_id}")
     void setStateThree(@Param("post_id")long post_id);
 
+    @Delete("delete from Post where post_id=#{post_id}")
+    void deletePost(@Param("post_id")long post_id);
+
 }
