@@ -31,4 +31,7 @@ public interface UserRepository {
     @Update("update Users set nickname=#{nickname},lat=#{lat},lon=#{lon},address=#{address} where user_id=#{user_id}")
     void updateUser(long user_id,String nickname,double lat,double lon, String address);
 
+    @Update("update Users set k_img_url=#{k_img_url} where IFNULL(k_id, 0)=#{k_id}")
+    void updateKImg(String k_img_url, long k_id);
+
 }
