@@ -40,7 +40,7 @@ public class PostController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/post/{post_owner_id}", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
+    @RequestMapping(value = "/getPostInfo/{post_owner_id}", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
     public List<Post> getPost(@PathVariable("post_owner_id") String post_owner_id) {
         return postRepository.getPost(post_owner_id);
     }

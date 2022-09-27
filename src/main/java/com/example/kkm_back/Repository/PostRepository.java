@@ -40,7 +40,7 @@ public interface PostRepository {
 )
     List<PostList> getAllWithHeart(@Param("lon") String lon, @Param("lat") String lat);
 
-    @Select("SELECT * FROM Post WHERE post_owner_id=#{post_owner_id} order by write_time desc")
+    @Select("select title,image_1,write_time,state from Post where post_owner_id=#{post_owner_id} order by write_time desc")
     List<Post> getPost(@Param ("post_owner_id") String post_owner_id);
 
 
