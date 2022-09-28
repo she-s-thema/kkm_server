@@ -37,7 +37,7 @@ public class OAuthController {
         if (exist == null) { // 회원 가입이 안 되어 있다면
             return "guest";
         } else { // 회원 가입이 되어있다면 JWT token 보내줘야 함
-            if(!current_profile_img.equals(exist.get("k_img_url").toString()) ) {
+            if (!current_profile_img.equals(exist.get("k_img_url").toString())) {
                 userRepository.updateKImg(userInfo.get("k_img_url").toString().replace("\"", ""), k_id);
             }
 
@@ -89,16 +89,21 @@ public class OAuthController {
     }
 
 
-
-
     @ResponseBody
     @RequestMapping(value = "/user/update", method = RequestMethod.PUT, produces = "application/json; charset=utf-8")
     public String userUpdate(@Param("user_id") long user_id, @Param("nickname") String nickname, @Param("lat") double lat, @Param("lon") double lon, @Param("address") String address) throws Exception {
         userRepository.updateUser(user_id, nickname, lat, lon, address);
         return "success";
     }
+
     @RequestMapping(value = "/getUserInfo/{user_id}", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
     public List<Map<String, Object>> GetUserInfo(@PathVariable("user_id") long user_id) throws Exception {
         return userRepository.getUserInfo(user_id);
     }
+
+    @RequestMapping(value = "/getKKM/{user_id}", method = RequestMethod.PUT, produces = "application/json; charset=utf-8")
+    public String GetKKM(@PathVariable("user_id") long user_id, @Param("value") int value) throws Exception {
+        userRepository.getKKM(user_id, value);
+        return "success";
     }
+}

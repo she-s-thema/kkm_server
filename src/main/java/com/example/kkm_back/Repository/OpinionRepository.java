@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 @Mapper
 public interface OpinionRepository {
-    @Insert("insert into Opinion values(#{op_id},#{title},#{description})")
+    @Insert("insert into Opinion values(#{op_id},#{title},#{description},#{write_user_id})")
     void insertOp(Opinion opinion);
 }
