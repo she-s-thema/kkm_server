@@ -5,6 +5,7 @@ import com.example.kkm_back.Domain.Post;
 import com.example.kkm_back.DAO.PostDAO;
 import com.example.kkm_back.Domain.PostList;
 import com.example.kkm_back.Repository.PostRepository;
+import com.example.kkm_back.Service.PostService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,9 @@ public class PostController {
 
     @Autowired
     private PostDAO postDAO;
+
+    @Autowired
+    private PostService postService;
 
     @ResponseBody
     @RequestMapping(value = "/post", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
@@ -52,6 +56,12 @@ public class PostController {
     public List<Post> getTown(@Param("lon") String lon, @Param("lat") String lat) throws Exception {
         return postRepository.getTown(lon, lat);
     }
+    //알고리즘 아직 완성 안됨 => 배열 문제
+//    @ResponseBody
+//    @RequestMapping(value = "post/algo", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
+//    public List<Post> getAlgorithm(@Param("user_id")String user_id)throws Exception{
+//        return postService.getHeart(user_id);
+//    }
 
     @RequestMapping(value = "post/getDetail", method = RequestMethod.GET)
     public Post getDetail(@RequestParam long post_id) throws Exception {
