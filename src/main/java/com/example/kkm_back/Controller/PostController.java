@@ -57,11 +57,11 @@ public class PostController {
         return postRepository.getTown(lon, lat);
     }
     //알고리즘 아직 완성 안됨 => 배열 문제
-//    @ResponseBody
-//    @RequestMapping(value = "post/algo", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
-//    public List<Post> getAlgorithm(@Param("user_id")String user_id)throws Exception{
-//        return postService.getHeart(user_id);
-//    }
+    @ResponseBody
+    @RequestMapping(value = "post/algo", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
+    public List<Post> getAlgorithm(@Param("user_id")String user_id)throws Exception{
+        return postService.getHeart(user_id);
+    }
 
     @RequestMapping(value = "post/getDetail", method = RequestMethod.GET)
     public Post getDetail(@RequestParam long post_id) throws Exception {

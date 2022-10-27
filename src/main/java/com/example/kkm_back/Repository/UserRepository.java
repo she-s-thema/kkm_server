@@ -28,7 +28,7 @@ public interface UserRepository {
     List<Map<String,Object>> getReviewInfo(long user_id);
 
     @Select("select lon,lat from Users where user_id=#{user_id}")
-    List<Double>getLonLat(@Param("user_id")String user_id);
+    Map<String,Double>getLonLat(@Param("user_id")String user_id);
     @Update("update Users set nickname=#{nickname},lat=#{lat},lon=#{lon},address=#{address} where user_id=#{user_id}")
     void updateUser(long user_id,String nickname,double lat,double lon, String address);
 
