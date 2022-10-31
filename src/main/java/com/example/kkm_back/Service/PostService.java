@@ -25,7 +25,7 @@ public class PostService {
         //사용자가 눌린 하트들의 포스트아이디
         List<String> PostIdFromHeart = heartRepository.postIdListfromHeart(user_id);
         List<String> heartsList = new ArrayList<>();
-        for (int i = 0; i < PostIdFromHeart.size()-1; i++) {
+        for (int i = 0; i < PostIdFromHeart.size(); i++) {
             String post_id = PostIdFromHeart.get(i);
             //사용자가 눌린 하트들에 대한 포스트에 하트를 누른 사람들의 아이디
             List<String> pushHeartUserList = heartRepository.userListfromHeart(post_id);
@@ -48,7 +48,6 @@ public class PostService {
         //맵 자료구조 반복된 횟수를 밸류 값으로, 원래 포스트 아이디를 키 값으로 중복 제거
         Map<String, Integer> valueListMap = new HashMap<String, Integer>();
         for (String str : heartsList) {
-            System.out.println("통3");
             Integer count = valueListMap.get(str);
             if (count == null) {
                 valueListMap.put(str, 1);
