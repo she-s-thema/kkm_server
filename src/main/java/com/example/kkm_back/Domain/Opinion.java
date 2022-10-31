@@ -1,5 +1,10 @@
 package com.example.kkm_back.Domain;
 
+import lombok.Getter;
+import lombok.ToString;
+
+@Getter
+@ToString
 public class Opinion {
     private long op_id;
     private String title;

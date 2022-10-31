@@ -1,11 +1,13 @@
 package com.example.kkm_back.Domain;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
 @Getter
 @ToString
+@Builder
 public class User {
     private long user_id;
     private String nickname;

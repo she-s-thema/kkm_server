@@ -1,10 +1,12 @@
 package com.example.kkm_back.Domain;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
 @Getter
 @ToString
+@Builder
 public class Post {
     private long post_id;
     private long post_owner_id;

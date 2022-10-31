@@ -47,4 +47,12 @@ public interface HeartRepository {
             "order by time desc ")
     List<Map<String,Object>> jjamList(long user_id);
 
+    @Select( "select H.post_id from Post\n" +
+            "    inner join Heart H\n" +
+            "    where Post.post_owner_id in (select user_id from Users where ST_DISTANCE_SPHERE(POINT(lon,lat),POINT(#{lon},#{lat}))<=5000) and heart_user_id=#{user_id} order by H.time desc limit 3")
+    List<String> postIdListfromHeartwithfiveKilo(String user_id,double lon,double lat);
+    @Select("select post_id from Heart where heart_user_id=#{user_id} order by time desc limit 3")
+    List<String> postIdListfromHeart(String user_id);
+    @Select("select heart_user_id from Heart where post_id=#{post_id}")
+    List<String> userListfromHeart(String post_id);
 }
