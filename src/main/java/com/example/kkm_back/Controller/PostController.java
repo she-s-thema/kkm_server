@@ -64,8 +64,8 @@ public class PostController {
     }
 
     @RequestMapping(value = "post/getDetail", method = RequestMethod.GET)
-    public Post getDetail(@RequestParam long post_id) throws Exception {
-        return postRepository.getPostID(post_id);
+    public Map<String, Object> getDetail(@RequestParam long post_id) throws Exception {
+        return postRepository.getPostDetail(post_id);
     }
 
     @RequestMapping(value = "post/updateStatetwo/{post_id}", method = RequestMethod.PUT)

@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -29,14 +30,14 @@ public class AmazonS3Controller {
     //파라미터에 포스트아이디 값 넣어주고 바디 폼데이터에 사진 넣어줌
     @ApiOperation(value = "Amazon S3에 파일 업로드", notes = "Amazon S3에 파일 업로드 ")
     @PutMapping("/file")
-    public Post uploadFile(@Param("post_id") long post_id, @RequestPart List<MultipartFile> multipartFile) {
+    public Map<String, Object> uploadFile(@Param("post_id") long post_id, @RequestPart List<MultipartFile> multipartFile) {
         List<String> arr = awsS3Service.uploadFile(multipartFile);
         for (int i = 0; i < arr.size(); i++) {
             String st_i = Integer.toString(i + 1);
             String image = "image_" + st_i;
             postRepository.uploadFile(post_id, arr.get(i), image);
         }
-        return postRepository.getPostID(post_id);
+        return postRepository.getPostDetail(post_id);
     }
 
 }

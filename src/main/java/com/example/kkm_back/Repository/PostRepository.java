@@ -51,8 +51,10 @@ public interface PostRepository {
     @Update("update Post set ${i}=#{arr} where post_id=#{post_id}")
     void uploadFile(@Param("post_id")long post_id,@Param("arr") String arr,String i);
 
-    @Select("SELECT * FROM Post WHERE post_id=#{post_id}")
-    Post getPostID(@Param ("post_id") long post_id);
+    @Select("select P.*, (select COUNT(heart_state) from Heart where post_id = #{post_id} and heart_state = 1) as heart\n" +
+            "from Post P, Heart H where P.post_id = #{post_id}\n" +
+            "group by P.post_id;")
+    Map<String, Object> getPostDetail(@Param ("post_id") long post_id);
 
     @Update("update Post\n" +
             "set state=2\n" +
