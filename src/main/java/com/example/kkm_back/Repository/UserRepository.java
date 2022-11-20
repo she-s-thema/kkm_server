@@ -39,4 +39,7 @@ public interface UserRepository {
     List<Map<String,Object>> getUserInfo(@Param("user_id")long user_id);
     @Update("update Users set kkm=kkm+#{value} where user_id = #{user_id}")
     void getKKM(long user_id,int value);
+
+    @Select("select kkm from Users where user_id = #{user_id}")
+    long getKKMById(long user_id);
 }

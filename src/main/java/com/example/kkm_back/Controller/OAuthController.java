@@ -106,4 +106,9 @@ public class OAuthController {
         userRepository.getKKM(user_id, value);
         return "success";
     }
+
+    @RequestMapping(value = "/getKKM", method = RequestMethod.GET)
+    public long GetKKMById(@RequestParam long user_id) {
+        return userRepository.getKKMById(user_id);
+    }
 }
