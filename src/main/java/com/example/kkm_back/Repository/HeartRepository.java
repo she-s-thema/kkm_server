@@ -40,7 +40,7 @@ public interface HeartRepository {
             "where Users.user_id=#{user_id} and Post.post_id=#{post_id}")
     int trueOrFalse(long user_id, long post_id);
 
-    @Select("select P.image_1,P.title from Heart\n" +
+    @Select("select P.post_id, P.post_owner_id, P.image_1, P.title from Heart\n" +
             "inner join Users U on Heart.heart_user_id = U.user_id\n" +
             "inner Join Post P on Heart.post_id = P.post_id\n" +
             "where U.user_id=#{user_id} and Heart.heart_state=1\n" +
