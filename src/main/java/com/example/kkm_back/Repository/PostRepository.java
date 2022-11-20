@@ -19,6 +19,7 @@ public interface PostRepository {
             "description, write_time, cost, state, type, count(heart_id) as heart, address FROM Post\n"+
             "INNER JOIN Heart H, Users U\n"+
             "WHERE H.post_id = Post.post_id\n"+
+            "AND H.heart_state = 1\n"+
             "AND U.user_id = Post.post_owner_id\n"+
             "AND Post.post_owner_id in\n"+
             "(select user_id from Users where ST_DISTANCE_SPHERE(POINT(#{lon}, #{lat}),\n"+
