@@ -21,8 +21,8 @@ public class HeartController {
     @ResponseBody
     @RequestMapping(value = "/heart", method = RequestMethod.POST)
     public long Heart(@RequestBody Heart heart) throws Exception {
+        System.out.println(heart);
         heartDAO.heartInsert(heart);
-        System.out.println(heart.getHeart_id());
         return heart.getHeart_id();
     }
     @ResponseBody
@@ -32,9 +32,9 @@ public class HeartController {
 
     }
     @ResponseBody
-    @RequestMapping(value = "/heart/cancel/{heart_id}", method = RequestMethod.PUT, produces = "application/json; charset=utf-8")
-    public String CancelHeart(@PathVariable("heart_id")int heart_id)throws Exception{
-        heartRepository.CancelHeart(heart_id);
+    @RequestMapping(value = "/heart/cancel", method = RequestMethod.PUT, produces = "application/json; charset=utf-8")
+    public String CancelHeart(@RequestParam long post_id, long user_id)throws Exception{
+        heartRepository.CancelHeart(post_id, user_id);
         return "success";
     }
     @ResponseBody
