@@ -17,11 +17,10 @@ public interface HeartRepository {
             "where Post.post_id=#{post_id} and heart_state=1")
     int getHeartCount(long post_id);
 
-    @Update("Update Post\n" +
-            "inner join Heart H on Post.post_id = H.post_id\n" +
-            "set H.heart_state=2\n" +
-            "where H.heart_id=#{heart_id}")
-    void CancelHeart(long heart_id);
+    @Delete("delete from Heart\n"+
+            "where post_id = #{post_id}\n"+
+            "and heart_user_id = #{user_id}")
+    void CancelHeart(long post_id, long user_id);
 
     @Update("Update Post\n" +
             "inner join Heart H on Post.post_id = H.post_id\n" +
