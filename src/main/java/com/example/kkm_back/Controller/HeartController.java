@@ -18,60 +18,53 @@ public class HeartController {
 
     @Autowired
     private HeartDAO heartDAO;
-
     @ResponseBody
-    @RequestMapping(value = "/heart", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
-    public long Heart(@ModelAttribute Heart heart) throws Exception {
+    @RequestMapping(value = "/heart", method = RequestMethod.POST)
+    public long Heart(@RequestBody Heart heart) throws Exception {
+        System.out.println(heart);
         heartDAO.heartInsert(heart);
-        System.out.println(heart.getHeart_id());
         return heart.getHeart_id();
-
     }
-
     @ResponseBody
     @RequestMapping(value = "/heart/{post_id}", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
-    public int CountHeart(@PathVariable("post_id") long post_id) throws Exception {
+    public int CountHeart(@PathVariable("post_id")long post_id)throws Exception{
         return heartRepository.getHeartCount(post_id);
 
     }
-
     @ResponseBody
-    @RequestMapping(value = "/heart/cancel/{heart_id}", method = RequestMethod.PUT, produces = "application/json; charset=utf-8")
-    public String CancelHeart(@PathVariable("heart_id") int heart_id) throws Exception {
-        heartRepository.CancelHeart(heart_id);
+    @RequestMapping(value = "/heart/cancel", method = RequestMethod.PUT, produces = "application/json; charset=utf-8")
+    public String CancelHeart(@RequestParam long post_id, long user_id)throws Exception{
+        heartRepository.CancelHeart(post_id, user_id);
         return "success";
     }
-
     @ResponseBody
     @RequestMapping(value = "/heart/re/{heart_id}", method = RequestMethod.PUT, produces = "application/json; charset=utf-8")
-    public String ReHeart(@PathVariable("heart_id") int heart_id) throws Exception {
+    public String ReHeart(@PathVariable("heart_id")int heart_id)throws Exception{
         heartRepository.ReHeart(heart_id);
         return "success";
     }
-
     @ResponseBody
     @RequestMapping(value = "/heartlist", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
-    public List<Heart> ReHeart() throws Exception {
+    public List<Heart> ReHeart()throws Exception{
         return heartRepository.getAllHeart();
     }
-
     @ResponseBody
     @RequestMapping(value = "/getHeartNum", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
-    public boolean trueorfalse(@Param("user_id") long user_id, @Param("post_id") long post_id) throws Exception {
+    public boolean trueorfalse(@Param("user_id")long user_id,@Param("post_id")long post_id) throws Exception{
         int trueorfalse;
         boolean Trueorfalse;
         trueorfalse = heartRepository.trueOrFalse(user_id, post_id);
-        if (trueorfalse > 0) {
-            Trueorfalse = true;
-        } else {
-            Trueorfalse = false;
+        if(trueorfalse>0){
+            Trueorfalse=true;
+        }
+        else {
+            Trueorfalse=false;
         }
         return Trueorfalse;
     }
-
     @ResponseBody
     @RequestMapping(value = "/jjamList", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
-    public List<Map<String, Object>> getjjamList(@Param("user_id") long user_id) throws Exception {
+    public List<Map<String,Object>> getjjamList(@Param("user_id")long user_id)throws Exception{
         return heartRepository.jjamList(user_id);
     }
 }
