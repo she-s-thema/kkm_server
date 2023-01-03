@@ -27,9 +27,9 @@ public class SwaggerConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("GGM Spring Boot REST API")
+                .title("KKM Spring Boot REST API")
                 .version("1.0.0")
-                .description("hello GGM")
+                .description("hello KKM")
                 .build();
     }
 
