@@ -40,8 +40,8 @@ public class PostController {
 
     @ResponseBody
     @RequestMapping(value = "/getPostList", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
-    public List<PostList> getAllWithHeart(@Param("lon") String lon, @Param("lat") String lat) throws Exception {
-        return postRepository.getAllWithHeart(lon, lat);
+    public List<PostList> getAllWithHeart(@Param("lon") String lon, @Param("lat") String lat, @Param("start") int start, @Param("end") int end) throws Exception {
+        return postRepository.getAllWithHeart(lon, lat, start, end);
     }
 
     @ResponseBody
@@ -64,8 +64,8 @@ public class PostController {
     }
 
     @RequestMapping(value = "post/getDetail", method = RequestMethod.GET)
-    public Post getDetail(@RequestParam long post_id) throws Exception {
-        return postRepository.getPostID(post_id);
+    public Map<String, Object> getDetail(@RequestParam long post_id) throws Exception {
+        return postRepository.getPostDetail(post_id);
     }
 
     @RequestMapping(value = "post/updateStatetwo/{post_id}", method = RequestMethod.PUT)
